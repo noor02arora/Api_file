@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Information Web Server</title>
+</head>
+<body>
+    <h1>File Information Web Server</h1>
+    <form id="upload-form">
+        <input type="file" name="file" accept=".txt,.pdf,.doc,.docx">
+        <button type="submit">Upload File</button>
+    </form>
+    <div id="file-info"></div>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        const fileInfoDiv = document.getElementById('file-info');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                fileInfoDiv.innerHTML = `
+                    <p>Uploaded File: ${data.filename}</p>
+                    <p>File Information: ${data.info}</p>
+                `;
+            } catch (error) {
+                console.error('Error uploading file:', error);
+                fileInfoDiv.innerHTML = '<p>An error occurred while uploading the file.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
