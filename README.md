@@ -32,3 +32,14 @@ You can test the API using tools like `curl`, Postman, or a web browser. For exa
 - Using curl:
   ```bash
   curl -X POST -F "file=@path/to/your/file.txt" http://127.0.0.1:5000/upload
+
+  ## Using the UI
+
+You can also use the provided UI to upload files and view information about them.
+
+1. Make sure the server is running (follow the instructions in the "Running the Server" section).
+2. Access the UI by visiting [http://127.0.0.1:5000](http://127.0.0.1:5000) in your web browser.
+3. Use the UI to upload files and view their information.
+
+
+ 
